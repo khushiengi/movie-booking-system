@@ -17,7 +17,6 @@
 	
 	
 	<modules>
-        <module>common-lib</module>
         <module>search-service</module>
         <module>theatre-service</module>
         <module>booking-service</module>
