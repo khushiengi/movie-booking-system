@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  theatre-service:
+    build: ./theatre-service
+    ports:
+      - "8081:8081"
+  booking-service:
+    build: ./booking-service
+    ports:
+      - "8082:8082"
+  payment-service:
+    build: ./payment-service
+    ports:
+      - "8083:8083"
