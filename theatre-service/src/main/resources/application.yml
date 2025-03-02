@@ -5,6 +5,16 @@ spring:
   application:
     name: theatre-service
 
+  kafka:
+    #bootstrap-servers: 127.0.0.1:9092,localhost:9092,192.168.8.128:9092,0.0.0.0:9092
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    topic:
+      theatre: theatre_producer
+
+
   datasource:
     url: jdbc:postgresql://localhost:5432/theatre_db
     username: admin

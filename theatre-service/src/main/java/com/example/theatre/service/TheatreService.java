@@ -18,10 +18,13 @@ public class TheatreService {
     private TheatreRepository theatreRepository;
     
     private TheatreRequestDtoToEntityMapper mapper;
+    
+    private TheatreProducer theatreProducer;
 
-    public TheatreService(TheatreRepository theatreRepository, TheatreRequestDtoToEntityMapper mapper) {
+    public TheatreService(TheatreRepository theatreRepository, TheatreRequestDtoToEntityMapper mapper, TheatreProducer theatreProducer) {
 		this.theatreRepository = theatreRepository;
 		this.mapper = mapper;
+		this.theatreProducer = theatreProducer;
 	}
 
 	public Theatre createTheatre(TheatreRequestDto theatre) {
@@ -32,7 +35,10 @@ public class TheatreService {
 		 * .build();
 		 */
     	Theatre theatreEntity = mapper.toEntity(theatre);
-        return theatreRepository.save(theatreEntity);
+    	Theatre savedTheatre =  theatreRepository.save(theatreEntity);
+    	theatreProducer.sendTheatreEvent("CREATE", savedTheatre);
+    	return savedTheatre;
+        
     }
 
     public List<Theatre> getAllTheatres() {
