@@ -52,4 +52,18 @@ public class TheatreService {
 			return Optional.empty();
 		}
     }
+
+	public Theatre updateTheatre(Long id, TheatreRequestDto updatedTheatre) {
+		Optional<Theatre> existingTheatre = theatreRepository.findById(id);
+
+        if (existingTheatre.isPresent()) {
+            Theatre theatreEntity = existingTheatre.get();
+            theatreEntity.setTheatreName(updatedTheatre.getTheatreName());
+            theatreEntity.setLocation(updatedTheatre.getLocation());
+           // theatreEntity.setScreens(updatedTheatre.getScreens());
+            return theatreRepository.save(theatreEntity);
+        } else {
+            throw new RuntimeException("Theatre not found");
+        }
+	}
 }

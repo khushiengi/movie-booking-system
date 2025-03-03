@@ -20,6 +20,7 @@
         <module>search-service</module>
         <module>theatre-service</module>
         <module>booking-service</module>
+        <module>api-gateway</module>
     </modules>
     
 	
